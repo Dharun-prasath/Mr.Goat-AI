@@ -29,51 +29,59 @@ export default function ChatPanel({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        fontFamily: "'Lexend', sans-serif"
+        fontFamily: "'Lexend', sans-serif",
       }}
     >
       <div
         className="glass-panel"
         style={{
           display: "flex",
-          top: -90,
-          width: 700,
-          height: 500,
-          borderRadius: 20,
-          boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.18)",
-          backdropFilter: "blur(16px) saturate(180%)",
-          WebkitBackdropFilter: "blur(16px) saturate(180%)",
-          border: "1.5px solid rgba(255, 255, 255, 0.35)",
+          top: -50,
+          width: 800,
+          height: 550,
+          borderRadius: 16,
+          backgroundColor: "#ffffffff",
+          border: "1px solid #ddd",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
           overflow: "hidden",
           position: "relative",
-          fontFamily: "'Lexend', sans-serif"
+          fontFamily: "'Lexend', sans-serif",
         }}
       >
         {/* Sidebar */}
         <div
           style={{
             width: 70,
-            background: "rgba(240, 245, 255, 0.32)",
-            backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
+            backgroundColor: "#ecececeb",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             paddingTop: 20,
             gap: 20,
             zIndex: 2,
-            fontFamily: "'Lexend', sans-serif"
+            fontFamily: "'Lexend', sans-serif",
           }}
         >
           <button
-            style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'Lexend', sans-serif" }}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              fontFamily: "'Lexend', sans-serif",
+            }}
             onClick={onOpenSidebar}
             aria-label="Open sidebar"
           >
             <FiMenu size={22} color="#444" />
           </button>
           <button
-            style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'Lexend', sans-serif" }}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              fontFamily: "'Lexend', sans-serif",
+            }}
             onClick={onNewChat}
             aria-label="New chat"
           >
@@ -86,7 +94,7 @@ export default function ChatPanel({
           <div
             style={{
               position: "absolute",
-              top: 5,
+              top: 17,
               left: 90,
               zIndex: 5,
               fontFamily: "'Lexend', sans-serif",
@@ -118,12 +126,19 @@ export default function ChatPanel({
             zIndex: 10,
             display: "flex",
             flexDirection: "column",
-            fontFamily: "'Lexend', sans-serif"
+            fontFamily: "'Lexend', sans-serif",
           }}
         >
           <div style={{ display: "flex", justifyContent: "flex-end", padding: 12 }}>
             <button
-              style={{ background: "none", border: "none", fontSize: 22, cursor: "pointer",color: "#111", fontFamily: "'Lexend', sans-serif" }}
+              style={{
+                background: "none",
+                border: "none",
+                fontSize: 22,
+                cursor: "pointer",
+                color: "#111",
+                fontFamily: "'Lexend', sans-serif",
+              }}
               onClick={onCloseSidebar}
               aria-label="Close sidebar"
             >
@@ -131,9 +146,20 @@ export default function ChatPanel({
             </button>
           </div>
           <div style={{ flex: 1, overflowY: "auto", padding: 12 }}>
-            <div style={{ fontWeight: 300, marginBottom: 10, color: "#111" , fontSize: 16,}}>Previous Chats</div>
-            {chats.length === 0 && <div style={{ color: "#111" }}>No chats yet.</div>}
-            {chats.map(chat => (
+            <div
+              style={{
+                fontWeight: 300,
+                marginBottom: 10,
+                color: "#111",
+                fontSize: 16,
+              }}
+            >
+              Previous Chats
+            </div>
+            {chats.length === 0 && (
+              <div style={{ color: "#111" }}>No chats yet.</div>
+            )}
+            {chats.map((chat) => (
               <div
                 key={chat.id}
                 onClick={() => onSelectChat(chat.id)}
@@ -165,7 +191,7 @@ export default function ChatPanel({
             alignItems: "center",
             justifyContent: "center",
             position: "relative",
-            fontFamily: "'Lexend', sans-serif"
+            fontFamily: "'Lexend', sans-serif",
           }}
         >
           {/* Centered, styled chat message */}
@@ -183,9 +209,9 @@ export default function ChatPanel({
               right: 0,
               bottom: 0,
               pointerEvents: "none",
-              fontFamily: "'Lexend', sans-serif"
+              fontFamily: "'Lexend', sans-serif",
             }}
-          >
+          > 
             <span
               className="glass-bubble"
               style={{
@@ -199,10 +225,11 @@ export default function ChatPanel({
                 borderRadius: 12,
                 padding: "12px 32px",
                 boxShadow: "0 2px 12px rgba(30,136,229,0.04)",
-                userSelect: "text"
+                userSelect: "text",
               }}
             >
-              {chats.find(c => c.id === currentChatId)?.messages[0] || "Start a new chat!"}
+              {chats.find((c) => c.id === currentChatId)?.messages[0] ||
+                "Start a new chat!"}
             </span>
           </div>
         </div>

@@ -96,12 +96,14 @@ export default function InputDock() {
           transform: "translateX(-50%)",
           borderRadius: 24,
           padding: "20px 24px",
-          boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
+          backgroundColor: "#ffffffff",
+          border: "1px solid #ddd",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
           zIndex: 950,
-          minWidth: 400,
-          maxWidth: 800,
+          minWidth: 300,
+          maxWidth: 700,
           width: "85vw",
-          border: "1.5px solid rgba(255, 255, 255, 0.35)",
+          
           ...lexendFont
         }}>
         {/* Main Input Container */}
@@ -128,9 +130,9 @@ export default function InputDock() {
                 border: "none",
                 outline: "none",
                 background: "transparent",
-                fontSize: inputValue ? "16px" : "18px",
+                fontSize: inputValue ? "16px" : "14px",
                 fontFamily: "'Lexend', system-ui, sans-serif",
-                color: "#000",
+                color: "#111",
                 fontWeight: inputValue ? 400 : 400,
                 lineHeight: "1.4",
                 padding: "0",
