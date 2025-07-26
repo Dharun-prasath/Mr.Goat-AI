@@ -7,7 +7,7 @@ export default function App() {
   const [visible, setVisible] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [chats, setChats] = useState([
-    { id: 1, title: "Chat 1", messages: ["Hello Raja"] },
+    { id: 1, title: "Chat 1", messages: ["Hello Dharun"] },
   ]);
   const [currentChatId, setCurrentChatId] = useState(1);
 
