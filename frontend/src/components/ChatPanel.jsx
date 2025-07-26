@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FiMenu } from "react-icons/fi";
 import { MdEdit } from "react-icons/md";
 
@@ -8,7 +8,7 @@ if (!fontLink) {
   const link = document.createElement('link');
   link.id = 'mrgoat-font-link';
   link.rel = 'stylesheet';
-  link.href = 'https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap';
+  link.href = 'https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap';
   document.head.appendChild(link);
 }
 
@@ -21,16 +21,6 @@ export default function ChatPanel({
   onSelectChat,
   onNewChat
 }) {
-  // Ensure font is applied on mount
-  useEffect(() => {
-    document.body.style.fontFamily = "'Lexend', sans-serif";
-    document.body.style.color = "#000";
-    return () => {
-      document.body.style.fontFamily = "";
-      document.body.style.color = "";
-    };
-  }, []);
-
   return (
     <div
       style={{
@@ -39,24 +29,24 @@ export default function ChatPanel({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        fontFamily: "'Lexend', sans-serif",
-        color: "#000"
+        fontFamily: "'Lexend', sans-serif"
       }}
     >
       <div
+        className="glass-panel"
         style={{
           display: "flex",
           top: -90,
           width: 700,
           height: 500,
           borderRadius: 20,
-          background: "rgba(255, 255, 255, 0.18)",
           boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.18)",
           backdropFilter: "blur(16px) saturate(180%)",
           WebkitBackdropFilter: "blur(16px) saturate(180%)",
           border: "1.5px solid rgba(255, 255, 255, 0.35)",
           overflow: "hidden",
-          position: "relative"
+          position: "relative",
+          fontFamily: "'Lexend', sans-serif"
         }}
       >
         {/* Sidebar */}
@@ -71,22 +61,23 @@ export default function ChatPanel({
             alignItems: "center",
             paddingTop: 20,
             gap: 20,
-            zIndex: 2
+            zIndex: 2,
+            fontFamily: "'Lexend', sans-serif"
           }}
         >
           <button
-            style={{ background: "none", border: "none", cursor: "pointer" }}
+            style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'Lexend', sans-serif" }}
             onClick={onOpenSidebar}
             aria-label="Open sidebar"
           >
-            <FiMenu size={22} color="#000" />
+            <FiMenu size={22} color="#444" />
           </button>
           <button
-            style={{ background: "none", border: "none", cursor: "pointer" }}
+            style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'Lexend', sans-serif" }}
             onClick={onNewChat}
             aria-label="New chat"
           >
-            <MdEdit size={22} color="#000" />
+            <MdEdit size={22} color="#888" />
           </button>
         </div>
 
@@ -99,9 +90,10 @@ export default function ChatPanel({
               left: 90,
               zIndex: 5,
               fontFamily: "'Lexend', sans-serif",
-              fontSize: 25,
-              color: "black",
+              fontSize: 23,
+              color: "#111",
               letterSpacing: 1.5,
+              textShadow: "0 2px 8px rgba(30,136,229,0.10)",
               userSelect: "none",
               transition: "opacity 0.3s",
               fontWeight: 400,
@@ -119,22 +111,19 @@ export default function ChatPanel({
             left: 0,
             height: "100%",
             width: 220,
-            background: "rgba(255, 255, 255, 0.32)",
-            backdropFilter: "blur(18px)",
-            WebkitBackdropFilter: "blur(18px)",
+            background: "#fff",
             boxShadow: "2px 0 8px rgba(0,0,0,0.08)",
             transform: sidebarOpen ? "translateX(0)" : "translateX(-100%)",
             transition: "transform 0.65s cubic-bezier(0.22, 0.61, 0.36, 1)",
             zIndex: 10,
             display: "flex",
             flexDirection: "column",
-            fontFamily: "'Lexend', sans-serif",
-            color: "black"
+            fontFamily: "'Lexend', sans-serif"
           }}
         >
           <div style={{ display: "flex", justifyContent: "flex-end", padding: 12 }}>
             <button
-              style={{ background: "none", border: "none", fontSize: 22, cursor: "pointer", color: "#000" }}
+              style={{ background: "none", border: "none", fontSize: 22, cursor: "pointer",color: "#111", fontFamily: "'Lexend', sans-serif" }}
               onClick={onCloseSidebar}
               aria-label="Close sidebar"
             >
@@ -142,8 +131,8 @@ export default function ChatPanel({
             </button>
           </div>
           <div style={{ flex: 1, overflowY: "auto", padding: 12 }}>
-            <div style={{ fontWeight: 600, marginBottom: 10, color: "#000" }}>Previous Chats</div>
-            {chats.length === 0 && <div style={{ color: "#000" }}>No chats yet.</div>}
+            <div style={{ fontWeight: 300, marginBottom: 10, color: "#111" , fontSize: 16,}}>Previous Chats</div>
+            {chats.length === 0 && <div style={{ color: "#111" }}>No chats yet.</div>}
             {chats.map(chat => (
               <div
                 key={chat.id}
@@ -153,10 +142,11 @@ export default function ChatPanel({
                   marginBottom: 6,
                   borderRadius: 8,
                   background: chat.id === currentChatId ? "#e0e7ef" : "transparent",
-                  color: "#000",
+                  color: chat.id === currentChatId ? "#111" : "#333",
                   cursor: "pointer",
-                  fontWeight: chat.id === currentChatId ? 600 : 400,
-                  fontFamily: "'Lexend', sans-serif"
+                  fontWeight: chat.id === currentChatId ? 300 : 200,
+                  fontFamily: "'Lexend', sans-serif",
+                  fontSize: 14,
                 }}
               >
                 {chat.title}
@@ -175,8 +165,7 @@ export default function ChatPanel({
             alignItems: "center",
             justifyContent: "center",
             position: "relative",
-            fontFamily: "'Lexend', sans-serif",
-            color: "#000"
+            fontFamily: "'Lexend', sans-serif"
           }}
         >
           {/* Centered, styled chat message */}
@@ -193,19 +182,20 @@ export default function ChatPanel({
               left: 0,
               right: 0,
               bottom: 0,
-              pointerEvents: "none"
+              pointerEvents: "none",
+              fontFamily: "'Lexend', sans-serif"
             }}
           >
             <span
+              className="glass-bubble"
               style={{
                 fontFamily: "'Lexend', sans-serif",
-                fontSize: 24,
-                color: "black",
+                fontSize: 28,
+                color: "#111",
                 letterSpacing: 1.2,
                 textShadow: "0 2px 8px rgba(30,136,229,0.08)",
                 fontWeight: 400,
                 textAlign: "center",
-                background: "rgba(255,255,255,0.18)",
                 borderRadius: 12,
                 padding: "12px 32px",
                 boxShadow: "0 2px 12px rgba(30,136,229,0.04)",
